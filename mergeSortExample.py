@@ -12,7 +12,7 @@ def mergeSort(array):
   return merge(left, right)
 
 
-def merge(left,right):
+def merge( left , right):
     result = []
     left_pointer = right_pointer = 0
 
