@@ -1,50 +1,43 @@
-# mergeSort in python 3
-# Pu Jiao
+# Mergesort
 
-def merge(arr,start,m,end):
-    left=arr[start:m]
-    right=arr[m+1:end]
-    i,j,k=0,0,0
-    while i<len(left) and j<len(right):
-        if left[i]<=right[j]:
-            arr[k]=left[i]
-            i+=1
-        else:
-            arr[k]=right[j]
-            j+=1
-        k+=1
-    
-    while i<len(left):
-        arr[k]=left[i]
-        i+=1
-        k+=1
-    while j<len(right):
-        arr[k]=right[i]
-        j+=1
-        k+=1
+def mergeSort(array):
 
-
-def mergeSort(arr,start,end):
-    if start < end:
-        m=(end+start)//2
-        mergeSort(arr,start,m)
-        mergeSort(arr,m+1,end)
-        merge(arr,start,m,end)
-
-
-
-
-# Driver code to test above 
-arr = [12, 11, 13, 5, 6, 7] 
-n = len(arr) 
-print ("Given array is") 
-for i in range(n): 
-    print ("%d" %arr[i]), 
+  if len(array) <= 1:
+    return array
   
-mergeSort(arr,0,n-1) 
-print ("\n\nSorted array is") 
-for i in range(n): 
-    print ("%d" %arr[i]), 
-  
-# This code is contributed by Mohit Kumra 
+  midpoint = int(len(array)/2)
 
+  left, right = mergeSort(array[:midpoint]), mergeSort(array[midpoint:])
+
+  return merge(left, right)
+
+
+def merge(left,right):
+    result = []
+    left_pointer = right_pointer = 0
+
+    while left_pointer < len(left) and right_pointer < len(right):
+
+      if left[left_pointer]< right [right_pointer]:
+
+           result.append(left[left_pointer])
+           left_pointer+=1
+
+      else:
+          result.append(right[right_pointer])
+          right_pointer+=1
+
+    result.extend(left[left_pointer:])
+    result.extend(right[right_pointer:])
+    return result
+
+def main():
+
+    array= [1,5,6,9,7,5,1,65,6,41,45]
+    print(array)
+
+    result=mergeSort(array)
+    print(result)
+
+if __name__== "__main__":
+    main()
