@@ -35,7 +35,6 @@ def main():
 
     array= [1,5,6,9,7,5,1,65,6,41,45]
     print(array)
-
     result=mergeSort(array)
     print(result)
 
